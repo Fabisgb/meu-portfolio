@@ -2,17 +2,51 @@
 📍 *Profissional de Tecnologia | Estudante de Ciência da Computação*  
 🌐 [Seu LinkedIn](#) • [Seu Portfólio](#)
 
-### Tecnologias Principais  
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+---
+
+## 📝 **Resumo**  
+Especialista em tecnologia com experiência desde a era do DOS, dedicada ao aprendizado contínuo e apaixonada por promover a ética e a justiça social. Com conhecimentos sólidos em Ciência da Computação, busco unir tecnologia e acessibilidade para criar soluções inovadoras.
+
+---
+
+## 🎯 **Objetivo**  
+Desenvolver e implementar tecnologias que transformem a vida das pessoas, com foco em acessibilidade, eficiência e inovação.
+
+---
+
+## 💼 **Experiência**  
+- **Atendente, Caixa e Ajudante de Escritório** | *Imobiliária*  
+  - Atendimento ao cliente com foco em resolução de problemas.  
+  - Gestão e organização de documentos administrativos.  
+  - Suporte geral nas rotinas de escritório.
+
+---
+
+## 🎓 **Educação**  
+- **Bacharelado em Ciência da Computação** | Gran Faculdade  
+  - Aprendizado contínuo em lógica, programação e desenvolvimento de sistemas.
+- Cursos adicionais:  
+  - Corretora de Imóveis  
+  - Publicidade e Assessoria de Imprensa  
 
 ---
 
 ## 🛠️ **Habilidades Profissionais**  
-- **Linguagens de Programação:**  
-  ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  
-  ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  
+- **Linguagens de Programação:** (Exemplo: Python, JavaScript, HTML, CSS).  
+- **Ferramentas e Tecnologias:** (Exemplo: Git, VS Code, Docker).  
+- **Soft skills:** Ética, trabalho em equipe, comunicação eficaz, adaptabilidade.
 
-- **Ferramentas e Tecnologias:**  
-  ![VSCode](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)  
+---
 
+## 📚 **Cursos Livres**  
+- Publicidade e Assessoria de Imprensa  
+- (Adicione outros cursos que já concluiu ou está cursando, como plataformas Udemy, Alura, etc.)  
+
+---
+
+## 📞 **Contato**  
+- **Email:** [seuemail@dominio.com](mailto:seuemail@dominio.com)  
+- **LinkedIn:** [Seu LinkedIn](#)  
+- **GitHub:** [Seu GitHub](https://github.com/seunome)
+
+---

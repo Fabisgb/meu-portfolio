@@ -1,6 +1,6 @@
 # 💻 **Fabiana Guimarães**  
 📍 *Profissional de Tecnologia | Estudante de Ciência da Computação*  
-🌐 [LinkedIn](https://www.linkedin.com/in/fabiana-guimarães-8463b466) • [Seu Portfólio](#)
+🌐 [LinkedIn](https://www.linkedin.com/in/fabiana-guimarães-8463b466) • [Portfólio](https://github.com/fabisgb)
 
 ---
 

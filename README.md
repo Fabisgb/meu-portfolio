@@ -1,6 +1,6 @@
 # 💻 **Fabiana Guimarães**  
 📍 *Profissional de Tecnologia | Estudante de Ciência da Computação*  
-🌐 [LinkedIn](www.linkedin.com/in/fabiana-guimarães-8463b466) • [Seu Portfólio](#)
+🌐 [LinkedIn](https://www.linkedin.com/in/fabiana-guimarães-8463b466) • [Seu Portfólio](#)
 
 ---
 
@@ -58,8 +58,8 @@ ATIVIDADES DESENVOLVIDAS: Atendimento ao cliente no balcão e no drive-thru, gar
 ---
 
 ## 📞 **Contato**  
-- **Email:** [seuemail@dominio.com](mailto:seuemail@dominio.com)  
-- **LinkedIn:** [LinkedIn](www.linkedin.com/in/fabiana-guimarães-8463b466)  
-- **GitHub:** [Seu GitHub](https://github.com/seunome)
+- **Email:** [seuemail@dominio.com](mailto:fabiana.guimaraes@faculdadegran.edu.br)  
+- **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/fabiana-guimarães-8463b466)  
+- **GitHub:** [Seu GitHub](https://github.com/fabisgb)
 
 ---

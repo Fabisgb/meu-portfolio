@@ -1,6 +1,6 @@
 # 💻 **Fabiana Guimarães**  
 📍 *Profissional de Tecnologia | Estudante de Ciência da Computação*  
-🌐 [LinkedIn](https://www.linkedin.com/in/fabiana-guimarães-8463b466) • [Portfólio](https://github.com/fabisgb)
+🌐 [LinkedIn](https://www.linkedin.com/in/fabianasguimaraes) • [Portfólio](https://github.com/fabisgb)
 
 ---
 
@@ -67,7 +67,7 @@ Computadores
 
 ## 📞 **Contato**  
 - **Email:** [seuemail@dominio.com](mailto:fabiana.guimaraes@faculdadegran.edu.br)  
-- **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/fabiana-guimarães-8463b466)  
+- **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/fabianasguimaraes)  
 - **GitHub:** [Seu GitHub](https://github.com/fabisgb)
 
 ---

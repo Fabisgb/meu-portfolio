@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabiana Silva Guimarães | Computação, Dados & Logística</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond (Serifada de alto contraste), DM Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones minimalistas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        ivory: {
+                            DEFAULT: '#FAF7F2',
+                            card: '#F4EFE6',
+                            border: '#E5DDD0',
+                        },
+                        plum: {
+                            950: '#160D14',
+                            900: '#21131E',
+                            800: '#351D2F',
+                            700: '#4A2540',
+                            600: '#643256',
+                            muted: '#7B6574',
+                        },
+                        rosegold: {
+                            DEFAULT: '#B76E79',
+                            light: '#D49A9A',
+                            soft: '#EED6D3',
+                            dark: '#96525D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Transições lentas e fluidas */
+        body {
+            transition: background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1), color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Vidro fosco editorial */
+        .editorial-glass {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Animação de entrada suave ao rolar (Fade + Slide) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Rastro sutil em Rosé Gold no cursor */
+        @media (pointer: fine) {
+            .cursor-trail-dot {
+                position: fixed;
+                pointer-events: none;
+                border-radius: 9999px;
+                background: radial-gradient(circle, rgba(183, 110, 121, 0.55) 0%, rgba(183, 110, 121, 0) 70%);
+                transform: translate(-50%, -50%);
+                z-index: 9999;
+                transition: opacity 0.4s ease;
+            }
+        }
+
+        /* Hover refinado nos cases */
+        .case-card {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.5s ease, box-shadow 0.6s ease;
+        }
+        .case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 45px -15px rgba(74, 37, 64, 0.12);
+        }
+        .dark .case-card:hover {
+            box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.55);
+        }
+
+        /* Impressão limpa caso clique em Baixar Currículo */
+        @media print {
+            header, #network-canvas, .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #1a1a1a !important; }
+        }
+    </style>
+</head>
+<body class="bg-ivory text-plum-700 dark:bg-plum-950 dark:text-[#F3ECE7] antialiased selection:bg-rosegold selection:text-white overflow-x-hidden">
+
+    <!-- Navegação Superior Minimalista -->
+    <header class="sticky top-0 z-40 w-full border-b border-ivory-border dark:border-plum-800/80 bg-ivory/85 dark:bg-plum-950/85 editorial-glass">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 h-18 py-4 flex items-center justify-between">
+            <!-- Monograma -->
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <span class="w-9 h-9 rounded-full border border-rosegold/60 flex items-center justify-center font-serif italic font-semibold text-base text-plum-700 dark:text-rosegold-light group-hover:bg-rosegold group-hover:text-white transition-all duration-500">
+                    FS
+                </span>
+                <span class="font-mono text-xs tracking-widest uppercase text-plum-muted dark:text-rosegold-light/80 hidden sm:inline">Fabiana Guimarães</span>
+            </a>
+
+            <!-- Links Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-plum-muted dark:text-slate-400">
+                <a href="#sobre" class="hover:text-rosegold dark:hover:text-rosegold-light transition-colors duration-300">Sobre</a>
+                <a href="#intersecao" class="hover:text-rosegold dark:hover:text-rosegold-light transition-colors duration-300">Competências</a>
+                <a href="#projetos" class="hover:text-rosegold dark:hover:text-rosegold-light transition-colors duration-300">Cases</a>
+                <a href="#trajetoria" class="hover:text-rosegold dark:hover:text-rosegold-light transition-colors duration-300">Rota</a>
+                <a href="#formacao" class="hover:text-rosegold dark:hover:text-rosegold-light transition-colors duration-300">Formação</a>
+            </nav>
+
+            <!-- Ações à Direita -->
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="Alternar modo claro marfim e escuro ameixa" title="Alternar atmosfera" class="w-10 h-10 rounded-full border border-ivory-border dark:border-plum-800 hover:border-rosegold text-plum-700 dark:text-rosegold-light flex items-center justify-center transition-all duration-500">
+                    <i id="theme-icon" class="fa-solid fa-moon text-xs"></i>
+                </button>
+                <a href="#contato" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-plum-700 dark:border-rosegold-light/60 hover:bg-plum-700 hover:text-ivory dark:hover:bg-rosegold dark:hover:border-rosegold dark:hover:text-white text-xs font-mono uppercase tracking-wider transition-all duration-500">
+                    <span>Contato</span>
+                </a>
+                <button id="mobile-menu-btn" aria-label="Abrir menu" class="md:hidden w-10 h-10 rounded-full border border-ivory-border dark:border-plum-800 flex items-center justify-center">
+                    <i class="fa-solid fa-bars text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-ivory-border dark:border-plum-800 bg-ivory dark:bg-plum-950 px-6 py-5 space-y-3 font-mono text-xs uppercase tracking-widest">
+            <a href="#sobre" class="mobile-link block py-2 hover:text-rosegold">01. Sobre</a>
+            <a href="#intersecao" class="mobile-link block py-2 hover:text-rosegold">02. Tecnologia × Logística</a>
+            <a href="#projetos" class="mobile-link block py-2 hover:text-rosegold">03. Projetos em Case</a>
+            <a href="#trajetoria" class="mobile-link block py-2 hover:text-rosegold">04. Trajetória como Rota</a>
+            <a href="#formacao" class="mobile-link block py-2 hover:text-rosegold">05. Formação & Certificações</a>
+            <a href="#contato" class="mobile-link block py-2 text-rosegold font-semibold">06. Conectar Pontos</a>
+        </div>
+    </header>
+
+    <!-- 1. HERO: Nome Gigante + Frase Assinatura + Grafo Animado Interativo -->
+    <section id="inicio" class="relative min-h-[88vh] flex items-center border-b border-ivory-border dark:border-plum-800/80 overflow-hidden">
+        <!-- Canvas da Rede de Pontos e Linhas (Grafo) -->
+        <canvas id="network-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28 relative z-10 w-full">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-3 mb-8">
+                    <span class="h-[1px] w-8 bg-rosegold"></span>
+                    <span class="font-mono text-xs uppercase tracking-[0.2em] text-rosegold dark:text-rosegold-light">
+                        Ciência da Computação & Logística • RJ
+                    </span>
+                </div>
+
+                <h1 class="font-serif text-5xl sm:text-7xl lg:text-[5.5rem] font-semibold tracking-tight leading-[1.04] text-plum-700 dark:text-[#F8F3EF] mb-8">
+                    Fabiana Silva <br>
+                    <span class="italic font-normal text-rosegold dark:text-rosegold-light">Guimarães</span>
+                </h1>
+
+                <p class="font-serif italic text-2xl sm:text-3xl lg:text-4xl text-plum-600/90 dark:text-slate-300 max-w-2xl leading-snug mb-10">
+                    “Computação, logística e a arte de encontrar o melhor caminho.”
+                </p>
+
+                <!-- Dois Botões Principais -->
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="#projetos" class="px-8 py-4 rounded-full bg-plum-700 dark:bg-rosegold hover:bg-plum-800 dark:hover:bg-rosegold-dark text-ivory text-xs font-mono uppercase tracking-widest transition-all duration-500 shadow-sm">
+                        Ver projetos
+                    </a>
+                    <button onclick="window.print()" class="px-8 py-4 rounded-full border border-plum-700/40 dark:border-rosegold-light/40 hover:border-rosegold text-plum-700 dark:text-rosegold-light text-xs font-mono uppercase tracking-widest transition-all duration-500 flex items-center gap-2.5 bg-ivory/60 dark:bg-plum-950/60 backdrop-blur-sm">
+                        <i class="fa-solid fa-arrow-down text-[11px]"></i>
+                        <span>Baixar currículo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SOBRE: Recorte Duotone Ameixa/Rosé + Texto Curto, Humano e Confiante -->
+    <section id="sobre" class="py-24 sm:py-32 border-b border-ivory-border dark:border-plum-800/80">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center reveal">
+                <!-- Coluna Visual: Retrato Editorial Duotone Ameixa/Rosé -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-72 sm:w-80 aspect-[4/5]">
+                        <!-- Moldura deslocada em linha fina Rosé Gold -->
+                        <div class="absolute inset-0 translate-x-3.5 translate-y-3.5 rounded-[2rem] border border-rosegold/70"></div>
+                        <!-- Recorte Principal com Efeito Duotone Ameixa/Rosé -->
+                        <div class="relative w-full h-full rounded-[2rem] overflow-hidden bg-gradient-to-br from-plum-700 via-plum-800 to-rosegold-dark flex flex-col justify-between p-8 text-ivory shadow-xl">
+                            <div class="flex justify-between items-center font-mono text-[11px] uppercase tracking-widest text-rosegold-soft/80">
+                                <span>Perfil</span>
+                                <span>20+ Anos Exp.</span>
+                            </div>
+                            
+                            <!-- Ilustração Abstrata Editorial (Monograma + Linhas de Rota) -->
+                            <div class="my-auto text-center">
+                                <div class="w-28 h-28 mx-auto rounded-full border border-rosegold-light/40 flex items-center justify-center mb-4 bg-plum-900/30 backdrop-blur-sm">
+                                    <span class="font-serif italic text-5xl text-rosegold-soft">FG</span>
+                                </div>
+                                <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-rosegold-light">São Gonçalo • Brasil</p>
+                            </div>
+
+                            <div class="pt-4 border-t border-rosegold-light/20 font-mono text-[11px] text-rosegold-soft/90 flex justify-between">
+                                <span>CC • Gran</span>
+                                <span>Logística • SENAI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Texto: Humano, Direto e Confiante -->
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="font-mono text-xs uppercase tracking-[0.2em] text-rosegold dark:text-rosegold-light">01 / Sobre</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-semibold leading-tight">
+                        Rigor analítico moldado na prática real com pessoas e operações.
+                    </h2>
+                    <p class="text-base sm:text-lg text-plum-600/90 dark:text-slate-300 leading-relaxed font-light">
+                        Durante mais de duas décadas atuando na linha de frente de atendimento, operações financeiras e levantamento territorial de dados, aprendi que nenhum sistema funciona bem se não resolver um problema real com clareza e eficiência.
+                    </p>
+                    <p class="text-base sm:text-lg text-plum-600/90 dark:text-slate-300 leading-relaxed font-light">
+                        Hoje uno minha graduação em <strong class="font-medium text-plum-700 dark:text-white">Ciência da Computação</strong> à formação técnica em <strong class="font-medium text-plum-700 dark:text-white">Logística</strong>, com certificações pelo Google, Cisco e AWS. Meu foco é transformar dados, código e infraestrutura em fluxos organizados, seguros e inteligentes.
+                    </p>
+                    
+                    <div class="pt-4 flex flex-wrap gap-8 border-t border-ivory-border dark:border-plum-800/80 font-mono text-xs">
+                        <div>
+                            <span class="block text-rosegold dark:text-rosegold-light uppercase tracking-wider mb-1">Publicação</span>
+                            <span class="text-plum-700 dark:text-slate-200">Proteja sua Vida! O Uso Inteligente dos Smartphones</span>
+                        </div>
+                        <div>
+                            <span class="block text-rosegold dark:text-rosegold-light uppercase tracking-wider mb-1">Idiomas</span>
+                            <span class="text-plum-700 dark:text-slate-200">PT (Nativo) • ES (Intermediário) • EN (Básico)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. HABILIDADES EM DUAS FAIXAS QUE SE CRUZAM + ZONA DE INTERSEÇÃO -->
+    <section id="intersecao" class="py-24 sm:py-32 bg-ivory-card/60 dark:bg-plum-900/40 border-b border-ivory-border dark:border-plum-800/80">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="max-w-2xl mb-16 reveal">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-rosegold dark:text-rosegold-light">02 / Arquitetura de Competências</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-semibold mt-3 leading-tight">
+                    Onde código e operação se encontram.
+                </h2>
+            </div>
+
+            <!-- Duas Faixas Cruzadas + Interseção Central -->
+            <div class="grid grid-cols-1 lg:grid-cols-11 gap-6 items-stretch reveal">
+                <!-- Faixa 1: Tecnologia -->
+                <div class="lg:col-span-4 p-8 rounded-3xl bg-ivory dark:bg-plum-900 border border-ivory-border dark:border-plum-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-xs uppercase tracking-widest text-rosegold">Faixa 01</span>
+                            <i class="fa-solid fa-terminal text-rosegold/70 text-sm"></i>
+                        </div>
+                        <h3 class="font-serif text-3xl font-semibold mb-4">Tecnologia & Dados</h3>
+                        <p class="text-sm text-plum-muted dark:text-slate-400 leading-relaxed mb-6">
+                            Desenvolvimento estruturado, consulta de bancos relacionais, redes e segurança da informação.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 font-mono text-xs">
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Python</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">SQL / MySQL</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">JavaScript</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">POO</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Git & GitHub</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Linux & Redes</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">AWS & Cisco</span>
+                    </div>
+                </div>
+
+                <!-- Zona de Interseção Destacada (O Superpoder) -->
+                <div class="lg:col-span-3 p-8 rounded-3xl bg-plum-700 dark:bg-gradient-to-b dark:from-plum-800 dark:to-plum-900 text-ivory border border-rosegold flex flex-col justify-between relative overflow-hidden shadow-xl">
+                    <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full border border-rosegold/30 pointer-events-none"></div>
+                    <div class="absolute -left-8 -bottom-8 w-32 h-32 rounded-full border border-rosegold/30 pointer-events-none"></div>
+                    
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-rosegold/25 border border-rosegold/50 font-mono text-[11px] uppercase tracking-widest text-rosegold-soft mb-5">
+                            Interseção
+                        </span>
+                        <h3 class="font-serif italic text-3xl font-semibold text-white leading-snug mb-4">
+                            Inteligência Analítica Aplicada a Operações
+                        </h3>
+                        <p class="text-sm text-rosegold-soft/90 leading-relaxed font-light">
+                            Capacidade de traduzir gargalos físicos e administrativos em modelos de dados, automações e decisões orientadas por indicadores.
+                        </p>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-rosegold/30 font-mono text-[11px] uppercase tracking-wider text-rosegold-light space-y-1.5">
+                        <div>✦ Otimização de Rotas & Fluxos</div>
+                        <div>✦ Governança & Qualidade de Dados</div>
+                        <div>✦ Suporte Técnico Humanizado</div>
+                    </div>
+                </div>
+
+                <!-- Faixa 2: Logística & Processos -->
+                <div class="lg:col-span-4 p-8 rounded-3xl bg-ivory dark:bg-plum-900 border border-ivory-border dark:border-plum-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-xs uppercase tracking-widest text-rosegold">Faixa 02</span>
+                            <i class="fa-solid fa-route text-rosegold/70 text-sm"></i>
+                        </div>
+                        <h3 class="font-serif text-3xl font-semibold mb-4">Logística & Processos</h3>
+                        <p class="text-sm text-plum-muted dark:text-slate-400 leading-relaxed mb-6">
+                            Visão sistêmica de cadeia de suprimentos, controle patrimonial, roteirização e atendimento orientado a metas.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 font-mono text-xs">
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Cadeia de Suprimentos</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Controle de Estoque</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Roteirização</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Sistemas ERP / WMS</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Gestão de Metas</span>
+                        <span class="px-3 py-1.5 rounded-full border border-ivory-border dark:border-plum-700">Conferência Fiscal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PROJETOS EM FORMATO DE CASE (Problema → O que fiz → Resultado) -->
+    <section id="projetos" class="py-24 sm:py-32 border-b border-ivory-border dark:border-plum-800/80">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 reveal">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-[0.2em] text-rosegold dark:text-rosegold-light">03 / Estudo de Casos</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-semibold mt-3">Projetos & Soluções</h2>
+                </div>
+                <a href="https://github.com/Fabisgb?tab=repositories" target="_blank" rel="noopener noreferrer" class="font-mono text-xs uppercase tracking-widest text-plum-700 dark:text-rosegold-light hover:text-rosegold transition-colors inline-flex items-center gap-2">
+                    <span>Repositórios no GitHub</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Case 01: BLOX-VELHA (Projeto Publicado) -->
+                <article class="case-card reveal p-8 sm:p-10 rounded-3xl bg-ivory-card/70 dark:bg-plum-900/70 border border-ivory-border dark:border-plum-800 hover:border-rosegold">
+                    <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-ivory-border dark:border-plum-800">
+                        <div>
+                            <span class="font-mono text-xs text-rosegold uppercase tracking-widest">Case 01 • Front-End & Lógica</span>
+                            <h3 class="font-serif text-3xl font-semibold mt-1">BLOX-VELHA — Jogo Interativo na Web</h3>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a href="https://fabisgb.github.io/blox-velha/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-plum-700 dark:bg-rosegold text-ivory font-mono text-xs uppercase tracking-wider hover:opacity-90 transition-opacity">
+                                Acessar Demo
+                            </a>
+                            <a href="https://github.com/Fabisgb/blox-velha" target="_blank" rel="noopener noreferrer" aria-label="Código no GitHub" class="w-10 h-10 rounded-full border border-ivory-border dark:border-plum-700 hover:border-rosegold flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-github text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm leading-relaxed">
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">01. Problema</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Necessidade de transformar regras clássicas de matriz e verificação de estados em uma interface leve, responsiva e intuitiva para navegador.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">02. O que foi feito</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Estruturei a lógica de turnos, validação de combinações vencedoras e placar dinâmico em JavaScript puro, estilizado com CSS responsivo.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">03. Resultado</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Aplicação publicada no GitHub Pages com carregamento instantâneo e jogabilidade fluida tanto em desktop quanto em dispositivos móveis.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-ivory-border/70 dark:border-plum-800/70 flex flex-wrap gap-2 font-mono text-[11px] text-plum-muted dark:text-slate-400">
+                        <span>#HTML5</span>
+                        <span>#CSS3</span>
+                        <span>#JavaScript</span>
+                        <span>#LógicaDeProgramação</span>
+                    </div>
+                </article>
+
+                <!-- Case 02: Otimizador de Rotas (Projeto de Portfólio Computação + Logística) -->
+                <article class="case-card reveal p-8 sm:p-10 rounded-3xl bg-ivory-card/70 dark:bg-plum-900/70 border border-ivory-border dark:border-plum-800 hover:border-rosegold">
+                    <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-ivory-border dark:border-plum-800">
+                        <div>
+                            <span class="font-mono text-xs text-rosegold uppercase tracking-widest">Case 02 • Grafos & Roteirização Logística</span>
+                            <h3 class="font-serif text-3xl font-semibold mt-1">Otimizador de Rotas de Entrega (Algoritmo de Dijkstra)</h3>
+                        </div>
+                        <a href="https://github.com/Fabisgb/otimizador-rotas-dijkstra" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-plum-700 dark:bg-rosegold text-ivory font-mono text-xs uppercase tracking-wider hover:opacity-90 transition-opacity">
+                            Ver no GitHub
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm leading-relaxed">
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">01. Problema</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Deslocamentos urbanos sem priorização de distância e tempo aumentam custos operacionais e comprometem janelas de entrega.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">02. O que foi feito</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Modelagem de malha viária como grafo ponderado em Python, aplicando o algoritmo de Dijkstra para calcular o caminho mínimo entre pontos de distribuição.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">03. Resultado</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Redução simulada de quilometragem percorrida e visualização clara das paradas críticas, inspirada na experiência real de cobertura territorial no IBGE.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-ivory-border/70 dark:border-plum-800/70 flex flex-wrap gap-2 font-mono text-[11px] text-plum-muted dark:text-slate-400">
+                        <span>#Python</span>
+                        <span>#EstruturasDeDados</span>
+                        <span>#Grafos</span>
+                        <span>#Roteirização</span>
+                    </div>
+                </article>
+
+                <!-- Case 03: Controle de Estoque & Análise SQL -->
+                <article class="case-card reveal p-8 sm:p-10 rounded-3xl bg-ivory-card/70 dark:bg-plum-900/70 border border-ivory-border dark:border-plum-800 hover:border-rosegold">
+                    <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-ivory-border dark:border-plum-800">
+                        <div>
+                            <span class="font-mono text-xs text-rosegold uppercase tracking-widest">Case 03 • Banco de Dados & WMS</span>
+                            <h3 class="font-serif text-3xl font-semibold mt-1">Modelagem Relacional para Controle de Estoque & Giro</h3>
+                        </div>
+                        <a href="https://github.com/Fabisgb/controle-estoque-sql" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-plum-700 dark:bg-rosegold text-ivory font-mono text-xs uppercase tracking-wider hover:opacity-90 transition-opacity">
+                            Ver no GitHub
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm leading-relaxed">
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">01. Problema</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Rupturas de estoque e excesso de itens parados em operações de varejo dificultam a reposição assertiva e o fechamento financeiro.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">02. O que foi feito</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Criação de esquema normalizado em MySQL com tabelas de produtos, movimentações, fornecedores e consultas analíticas de ponto de pedido e curva ABC.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-plum-muted dark:text-rosegold-light block mb-2">03. Resultado</span>
+                            <p class="text-plum-600 dark:text-slate-300 font-light">
+                                Rastreabilidade completa de entradas e saídas, gerando alertas automáticos para reposição antes da ruptura operacional.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-ivory-border/70 dark:border-plum-800/70 flex flex-wrap gap-2 font-mono text-[11px] text-plum-muted dark:text-slate-400">
+                        <span>#SQL</span>
+                        <span>#MySQL</span>
+                        <span>#ModelagemDeDados</span>
+                        <span>#GestãoDeEstoque</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TRAJETÓRIA COMO ROTA (Linha vertical que se desenha conforme o scroll) -->
+    <section id="trajetoria" class="py-24 sm:py-32 bg-ivory-card/50 dark:bg-plum-900/30 border-b border-ivory-border dark:border-plum-800/80">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8">
+            <div class="mb-16 reveal">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-rosegold dark:text-rosegold-light">04 / Itinerário</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-semibold mt-3">Trajetória como Rota</h2>
+            </div>
+
+            <div id="route-container" class="relative pl-8 sm:pl-12 space-y-14">
+                <!-- Linha base apagada -->
+                <div class="absolute left-[11px] sm:left-[15px] top-2 bottom-2 w-[1px] bg-ivory-border dark:bg-plum-800"></div>
+                <!-- Linha de progresso Rosé Gold desenhada no scroll -->
+                <div id="route-progress-line" class="absolute left-[11px] sm:left-[15px] top-2 w-[2px] bg-rosegold transition-all duration-150 ease-out" style="height: 0%;"></div>
+
+                <!-- Parada 01 -->
+                <div class="relative reveal">
+                    <span class="absolute -left-[27px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-rosegold ring-4 ring-ivory dark:ring-plum-950"></span>
+                    <div class="font-mono text-xs text-rosegold uppercase tracking-widest mb-1">2026 – 2027 • Parada Atual</div>
+                    <h3 class="font-serif text-2xl font-semibold">Ensino Técnico em Logística — SENAI</h3>
+                    <p class="text-sm text-plum-600 dark:text-slate-300 mt-2 leading-relaxed font-light">
+                        Aprofundamento em gestão da cadeia de suprimentos, armazenagem, distribuição, indicadores de desempenho e sistemas integrados de controle.
+                    </p>
+                </div>
+
+                <!-- Parada 02 -->
+                <div class="relative reveal">
+                    <span class="absolute -left-[27px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-plum-700 dark:bg-rosegold-light ring-4 ring-ivory dark:ring-plum-950"></span>
+                    <div class="font-mono text-xs text-rosegold uppercase tracking-widest mb-1">2023 – 2027 • Graduação</div>
+                    <h3 class="font-serif text-2xl font-semibold">Bacharelado em Ciência da Computação — Gran Faculdade</h3>
+                    <p class="text-sm text-plum-600 dark:text-slate-300 mt-2 leading-relaxed font-light">
+                        Formação em algoritmos, programação orientada a objetos, engenharia de software, bancos de dados, arquitetura de redes e segurança da informação.
+                    </p>
+                </div>
+
+                <!-- Parada 03 -->
+                <div class="relative reveal">
+                    <span class="absolute -left-[27px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-plum-700 dark:bg-rosegold-light ring-4 ring-ivory dark:ring-plum-950"></span>
+                    <div class="font-mono text-xs text-plum-muted dark:text-slate-400 uppercase tracking-widest mb-1">Jul 2022 – Jan 2023 • Operação em Campo</div>
+                    <h3 class="font-serif text-2xl font-semibold">Recenseadora — IBGE (São Gonçalo, RJ)</h3>
+                    <p class="text-sm text-plum-600 dark:text-slate-300 mt-2 leading-relaxed font-light">
+                        Planejamento de rotas territoriais, coleta de dados socioeconômicos via dispositivo móvel (DMC), auditoria de consistência e cumprimento de metas sob prazos rigorosos.
+                    </p>
+                </div>
+
+                <!-- Parada 04 -->
+                <div class="relative reveal">
+                    <span class="absolute -left-[27px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-plum-700 dark:bg-rosegold-light ring-4 ring-ivory dark:ring-plum-950"></span>
+                    <div class="font-mono text-xs text-plum-muted dark:text-slate-400 uppercase tracking-widest mb-1">2006 – 2012 • Operações Comerciais & Financeiras</div>
+                    <h3 class="font-serif text-2xl font-semibold">Caixa & Vendedora — Drogarias Tamoio e Mr. Cat</h3>
+                    <p class="text-sm text-plum-600 dark:text-slate-300 mt-2 leading-relaxed font-light">
+                        Gestão de frente de caixa, fechamento financeiro diário, emissão fiscal, controle de metas comerciais e atendimento consultivo ao público.
+                    </p>
+                </div>
+
+                <!-- Parada 05 -->
+                <div class="relative reveal">
+                    <span class="absolute -left-[27px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-plum-700 dark:bg-rosegold-light ring-4 ring-ivory dark:ring-plum-950"></span>
+                    <div class="font-mono text-xs text-plum-muted dark:text-slate-400 uppercase tracking-widest mb-1">2002 – 2005 • Design & Processos Administrativos</div>
+                    <h3 class="font-serif text-2xl font-semibold">Designer Gráfica (Ohayo) & Assistente Administrativa (JB Imóveis)</h3>
+                    <p class="text-sm text-plum-600 dark:text-slate-300 mt-2 leading-relaxed font-light">
+                        Criação de identidades visuais com precisão estética (Photoshop/Illustrator) e organização de contratos, cobranças e arquivos digitais em sistema.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FORMAÇÃO E CERTIFICAÇÕES: Layout Minimalista -->
+    <section id="formacao" class="py-24 sm:py-32 border-b border-ivory-border dark:border-plum-800/80">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 reveal">
+            <div class="mb-16">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-rosegold dark:text-rosegold-light">05 / Credenciais</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-semibold mt-3">Formação & Certificações</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Formação Acadêmica -->
+                <div class="divide-y divide-ivory-border dark:divide-plum-800 border-t border-b border-ivory-border dark:border-plum-800">
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Bacharelado em Ciência da Computação</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">Gran Faculdade</p>
+                        </div>
+                        <span class="font-mono text-xs text-rosegold shrink-0">2023 – 2027</span>
+                    </div>
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Técnico em Logística</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">SENAI</p>
+                        </div>
+                        <span class="font-mono text-xs text-rosegold shrink-0">2026 – 2027</span>
+                    </div>
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Técnico em Publicidade</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">ETEC — Escola Técnica de Comunicação</p>
+                        </div>
+                        <span class="font-mono text-xs text-plum-muted shrink-0">2001</span>
+                    </div>
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Técnico em Transações Imobiliárias</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">Instituto Monitor</p>
+                        </div>
+                        <span class="font-mono text-xs text-plum-muted shrink-0">2019</span>
+                    </div>
+                </div>
+
+                <!-- Certificações Técnicas -->
+                <div class="divide-y divide-ivory-border dark:divide-plum-800 border-t border-b border-ivory-border dark:border-plum-800">
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Suporte Profissional em TI</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">Google / Coursera</p>
+                        </div>
+                        <span class="font-mono text-xs text-rosegold shrink-0">Google</span>
+                    </div>
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Defesa de Rede & Técnico de Redes</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">Cisco Networking Academy</p>
+                        </div>
+                        <span class="font-mono text-xs text-rosegold shrink-0">Cisco</span>
+                    </div>
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Nexa: Análise Avançada com IA</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">Amazon Web Services</p>
+                        </div>
+                        <span class="font-mono text-xs text-rosegold shrink-0">AWS</span>
+                    </div>
+                    <div class="py-5 flex justify-between items-baseline gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-semibold">Administrador de Dados & Gerente de Projetos</h3>
+                            <p class="text-sm text-plum-muted dark:text-slate-400">Formação Intermediária em Ciência da Computação</p>
+                        </div>
+                        <span class="font-mono text-xs text-rosegold shrink-0">GRAN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTATO: "Vamos conectar pontos?" + Instagram, LinkedIn e GitHub -->
+    <section id="contato" class="py-28 sm:py-36 bg-plum-700 dark:bg-plum-900 text-ivory">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center reveal">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-rosegold-light">06 / Contato</span>
+            <h2 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold mt-4 mb-6 leading-tight">
+                Vamos conectar <span class="italic font-normal text-rosegold-soft">pontos?</span>
+            </h2>
+            <p class="text-base sm:text-lg text-rosegold-soft/85 max-w-xl mx-auto mb-12 font-light leading-relaxed">
+                Disponível para oportunidades e projetos em Tecnologia da Informação, Análise de Dados, Suporte Técnico e Operações Logísticas.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 font-mono text-xs uppercase tracking-widest">
+                <a href="https://www.instagram.com/fabianasgb" target="_blank" rel="noopener noreferrer" class="px-7 py-4 rounded-full bg-rosegold hover:bg-rosegold-dark text-white transition-all duration-500 flex items-center gap-2.5">
+                    <i class="fa-brands fa-instagram text-sm"></i>
+                    <span>@fabianasgb</span>
+                </a>
+                <a href="https://www.linkedin.com/in/fabianasguimaraes" target="_blank" rel="noopener noreferrer" class="px-7 py-4 rounded-full border border-rosegold-light/40 hover:border-white text-ivory transition-all duration-500 flex items-center gap-2.5">
+                    <i class="fa-brands fa-linkedin-in text-sm"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/Fabisgb" target="_blank" rel="noopener noreferrer" class="px-7 py-4 rounded-full border border-rosegold-light/40 hover:border-white text-ivory transition-all duration-500 flex items-center gap-2.5">
+                    <i class="fa-brands fa-github text-sm"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé Editorial -->
+    <footer class="py-8 bg-plum-950 text-rosegold-soft/60 font-mono text-xs">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span>© <span id="current-year"></span> Fabiana Silva Guimarães</span>
+            <a href="#inicio" class="hover:text-rosegold-light transition-colors">Voltar ao topo ↑</a>
+        </div>
+    </footer>
+
+    <!-- Scripts de Interatividade: Grafo no Hero, Rastro Rosé Gold, Scroll Route & Tema -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 1. Alternância entre Modo Claro (Marfim + Ameixa) e Modo Escuro (Ameixa Profundo + Rosé Gold)
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlEl = document.documentElement;
+
+        function updateThemeIcon() {
+            if (htmlEl.classList.contains('dark')) {
+                themeIcon.className = 'fa-solid fa-sun text-xs';
+            } else {
+                themeIcon.className = 'fa-solid fa-moon text-xs';
+            }
+        }
+        updateThemeIcon();
+
+        themeToggle.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            updateThemeIcon();
+        });
+
+        // 2. Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 3. Animação de Entrada Suave ao Rolar (Intersection Observer)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 4. Trajetória como Rota: Linha vertical que se desenha no scroll
+        const routeContainer = document.getElementById('route-container');
+        const routeProgressLine = document.getElementById('route-progress-line');
+
+        function updateRouteProgress() {
+            if (!routeContainer || !routeProgressLine) return;
+            const rect = routeContainer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const totalHeight = rect.height;
+            const scrolled = Math.min(Math.max(windowHeight * 0.65 - rect.top, 0), totalHeight);
+            const percentage = (scrolled / totalHeight) * 100;
+            routeProgressLine.style.height = `${percentage}%`;
+        }
+        window.addEventListener('scroll', updateRouteProgress, { passive: true });
+
+        // 5. Rastro Sutil em Rosé Gold no Cursor
+        const trailCount = 7;
+        const trailDots = [];
+        for (let i = 0; i < trailCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'cursor-trail-dot';
+            const size = 18 - i * 1.8;
+            dot.style.width = `${size}px`;
+            dot.style.height = `${size}px`;
+            dot.style.opacity = `${0.45 - i * 0.05}`;
+            document.body.appendChild(dot);
+            trailDots.push({ el: dot, x: -100, y: -100 });
+        }
+
+        let mouseX = -100, mouseY = -100;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateTrail() {
+            let x = mouseX;
+            let y = mouseY;
+            trailDots.forEach((dot) => {
+                dot.x += (x - dot.x) * 0.35;
+                dot.y += (y - dot.y) * 0.35;
+                dot.el.style.left = `${dot.x}px`;
+                dot.el.style.top = `${dot.y}px`;
+                x = dot.x;
+                y = dot.y;
+            });
+            requestAnimationFrame(animateTrail);
+        }
+
+        // 6. Grafo Animado no Hero (Pontos e Linhas Reagindo ao Mouse)
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+        let nodes = [];
+        let heroMouse = { x: null, y: null };
+
+        function resizeNetwork() {
+            const heroSection = document.getElementById('inicio');
+            canvas.width = heroSection.offsetWidth;
+            canvas.height = heroSection.offsetHeight;
+            initNodes();
+        }
+
+        function initNodes() {
+            nodes = [];
+            const count = Math.min(48, Math.floor(canvas.width / 26));
+            for (let i = 0; i < count; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.45,
+                    vy: (Math.random() - 0.5) * 0.45,
+                    radius: Math.random() * 2 + 1.5
+                });
+            }
+        }
+
+        document.getElementById('inicio').addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            heroMouse.x = e.clientX - rect.left;
+            heroMouse.y = e.clientY - rect.top;
+        });
+
+        document.getElementById('inicio').addEventListener('mouseleave', () => {
+            heroMouse.x = null;
+            heroMouse.y = null;
+        });
+
+        function drawNetwork() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isDark = htmlEl.classList.contains('dark');
+            const nodeColor = isDark ? 'rgba(212, 154, 154, 0.55)' : 'rgba(183, 110, 121, 0.45)';
+            const lineBase = isDark ? '212, 154, 154' : '183, 110, 121';
+
+            for (let i = 0; i < nodes.length; i++) {
+                const n = nodes[i];
+                n.x += n.vx;
+                n.y += n.vy;
+
+                if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+
+                // Desenha o nó
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                ctx.fillStyle = nodeColor;
+                ctx.fill();
+
+                // Conecta nós próximos entre si
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const n2 = nodes[j];
+                    const dist = Math.hypot(n.x - n2.x, n.y - n2.y);
+                    if (dist < 140) {
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(n2.x, n2.y);
+                        ctx.strokeStyle = `rgba(${lineBase}, ${(1 - dist / 140) * 0.22})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+
+                // Conecta linhas do grafo quando o mouse se aproxima
+                if (heroMouse.x !== null && heroMouse.y !== null) {
+                    const mDist = Math.hypot(n.x - heroMouse.x, n.y - heroMouse.y);
+                    if (mDist < 180) {
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(heroMouse.x, heroMouse.y);
+                        ctx.strokeStyle = `rgba(${lineBase}, ${(1 - mDist / 180) * 0.55})`;
+                        ctx.lineWidth = 1.2;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawNetwork);
+        }
+
+        window.addEventListener('resize', resizeNetwork);
+        window.onload = function () {
+            resizeNetwork();
+            drawNetwork();
+            animateTrail();
+            updateRouteProgress();
+        };
+    </script>
+</body>
+</html>
